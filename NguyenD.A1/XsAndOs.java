@@ -10,35 +10,49 @@ public class XsAndOs {
    Scanner s = new Scanner(System.in);
    
    String[][] positions = new String[3][3];
+   int x;
+   int y;
    
-   public void intro() {
+   public XsAndOs() {
+      for (int i = 0; i< 3; i++) {
+         for (int j = 0; j < 3; j++) {
+            positions[i][j] = "   ";
+         }
+      }
+   }
+   
+   public void gamePlay() {
       System.out.println("This is a game of X's and O's");
+      System.out.println();
       
+      while (true) {
+      System.out.println("Player 1, start placing your letter");
+      locate();
+      positions[x][y] = "x  ";
+      printGrid();
+      
+      System.out.println("Player 2, place your letter");
+      locate();
+      positions[x][y] = "o  ";
+      printGrid();
+      }
+   }
+   
+   public void printGrid() {
       for (int i = 0; i < 3; i++) {
          for (int j = 0; j < 3; j++) {
-            System.out.print("-   ");
+            System.out.print(positions[i][j]);
          }
          System.out.println();
       }
    }
    
-   public void gamePlay() {
-      System.out.println("Player 1, start placing your letter");
-      locate();
-      
-   }
-   
-   public String[][] locate() {
+   public void locate() {
       System.out.print("Row: ");
-      int x = s.nextInt();
+      x = s.nextInt() - 1;
       System.out.print("Column: ");
-      int y = s.nextInt();
+      y = s.nextInt() - 1;
       s.nextLine();
-      
-      System.out.print("Placing 'x' or 'o'? ");
-      positions[x-1][y-1] = s.next();
-      s.nextLine();
-      
-      return positions;
+
    }
 }
