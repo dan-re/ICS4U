@@ -20,6 +20,12 @@ public class XsAndOs {
     initializeBoard();
   }
 
+  // Introduce the game
+  public void intro() {
+    System.out.println("This is a game of X's and O's. Player 1 is X and Player 2 is O.");
+  }
+
+  // Initialize the board with empty positions
   public void initializeBoard() {
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < columns; j++) {
@@ -39,6 +45,7 @@ public class XsAndOs {
     }
   }
 
+  // Change users after each turn
   public void changePlayer() {
     if (currentPlayer == 'x') {
       currentPlayer = 'o';
@@ -47,8 +54,8 @@ public class XsAndOs {
     }
   }
 
+  // Read the user's input and check if the move is valid
   public void gamePlay() {
-    System.out.println("This is a game of X's and O's. Player 1 is X and Player 2 is O.");
     System.out.println();
     boolean validInput = false;
     int row;
@@ -60,8 +67,7 @@ public class XsAndOs {
         row = s.nextInt() - 1;
         System.out.print("Enter a column number (1, 2, or 3): ");
         col = s.nextInt() - 1;
-      } 
-      else {
+      } else {
         System.out.print("Player 2, enter a row number (1, 2, or 3): ");
         row = s.nextInt() - 1;
         System.out.print("Enter a column number (1, 2, or 3): ");
@@ -72,8 +78,46 @@ public class XsAndOs {
         positions[row][col] = currentPlayer;
         validInput = true;
       } else {
-        System.out.println("Sorry, the move at (" + (row + 1) + ", " + (col + 1) + ") is not valid. Please try again");
+        System.out.println("Sorry, the move at (" + (row + 1) + ", " + (col + 1) + ") is not valid. Please try again.");
+        System.out.println();
       }
     } while (!validInput);
+  }
+
+  public boolean checkForWin() {
+    // Check rows
+    for (int i = 0; i < rows; i++) {
+      if (positions[i][0] == currentPlayer && positions[i][1] == currentPlayer && positions[i][2] == currentPlayer) {
+        return true;
+      }
+    }
+
+    // Check columns
+    for (int j = 0; j < columns; j++) {
+      if (positions[0][j] == currentPlayer && positions[1][j] == currentPlayer && positions[2][j] == currentPlayer) {
+        return true;
+      }
+    }
+
+    // Check diagonals
+    if (positions[0][0] == currentPlayer && positions[1][1] == currentPlayer && positions[2][2] == currentPlayer) {
+      return true;
+    }
+    if (positions[0][2] == currentPlayer && positions[1][1] == currentPlayer && positions[2][0] == currentPlayer) {
+      return true;
+    }
+
+    return false;
+  }
+
+  public boolean checkForTie() {
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < columns; j++) {
+        if (positions[i][j] == '-') {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 }
