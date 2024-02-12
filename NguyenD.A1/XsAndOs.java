@@ -11,20 +11,27 @@ public class XsAndOs {
 
   int rows = 3;
   int columns = 3;
-  char[][] positions = new char[columns][rows];
-  char currentPlayer = 'x';
+  char[][] positions;
+  char currentPlayer;
+
+  public XsAndOs() {
+    positions = new char[rows][columns];
+    currentPlayer = 'x';
+    initializeBoard();
+  }
 
   public void initializeBoard() {
-    for (int i = 0; i < columns; i++) {
-      for (int j = 0; j < rows; j++) {
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < columns; j++) {
         positions[i][j] = '-';
       }
     }
   }
 
   public void printBoard() {
-    for (int i = 0; i < columns; i++) {
-      for (int j = 0; j < rows; j++) {
+    System.out.println();
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < columns; j++) {
         System.out.print("   " + positions[i][j] + "   ");
       }
       System.out.println();
@@ -40,19 +47,26 @@ public class XsAndOs {
     }
   }
 
-  public void updateBoard() {
-
+  public void gamePlay() {
+    System.out.println("This is a game of X's and O's. Player 1 is X and Player 2 is O.");
+    System.out.println();
     boolean validInput = false;
+    int row;
+    int col;
 
     do {
       if (currentPlayer == 'x') {
-        System.out.print("Player 'X', enter your move: ");
-      } else {
-        System.out.print("Player 'O', enter your move: ");
+        System.out.print("Player 1, enter a row number (1, 2, or 3): ");
+        row = s.nextInt() - 1;
+        System.out.print("Enter a column number (1, 2, or 3): ");
+        col = s.nextInt() - 1;
+      } 
+      else {
+        System.out.print("Player 2, enter a row number (1, 2, or 3): ");
+        row = s.nextInt() - 1;
+        System.out.print("Enter a column number (1, 2, or 3): ");
+        col = s.nextInt() - 1;
       }
-
-      int row = s.nextInt() - 1;
-      int col = s.nextInt() - 1;
 
       if (row >= 0 && row < rows && col >= 0 && col < columns && positions[row][col] == '-') {
         positions[row][col] = currentPlayer;

@@ -3,8 +3,9 @@ public class Main {
     XsAndOs xo = new XsAndOs();
     boolean gameStatus = false;
     do {
+      xo.gamePlay();
       xo.printBoard();
-      xo.updateBoard();
+      gameStatus = true;
     } while (gameStatus == false);
   }
 }
