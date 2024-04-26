@@ -1,0 +1,9 @@
+1.
+Error at: Term class, isGreater() method
+Nature of error: terms were compared by their coefficients, not by their exponents
+Correction: make the computer compare two terms by their exponents first. Coefficients are only taken into account when the exponents are equal
+
+2.
+Error at: Term class, evaluate() method
+Nature of error: variable was multiplied by the coefficient before is was raised to the power of the exponent
+Correction: move the coefficient outside of the Math.pow() function
